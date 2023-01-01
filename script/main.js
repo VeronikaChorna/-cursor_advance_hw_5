@@ -1,0 +1,94 @@
+//1-------------------------------------------------------------------------------------------------------------
+function getRandomArray(length, min, max) {
+    let numbersArr = [];
+    let number;
+    for (let i = 0; i < length; i++) {
+        number = (Math.random() * (max - min) + min).toFixed(0);
+        numbersArr.push(Number(number));
+    }
+    return numbersArr;
+}
+
+console.log('1. An array of random integers', getRandomArray(15, 1, 100));
+ 
+//2-------------------------------------------------------------------------------------------------------------
+function getModa(numbers) {
+    const count = {};
+    numbers.forEach(function(i) { count[i] = (count[i]||0) + 1;});
+    maxValue = 0;
+    let result;
+    for (const [key, value] of Object.entries(count)) {
+        if (value > maxValue) {
+            maxValue = value;
+        }
+      }
+
+      result = Object.keys(count).find(key => count[key] === maxValue);
+      return result;
+    }
+console.log('2. Moda of an random array: ', getModa(getRandomArray(15, 1, 10)));
+
+//3-------------------------------------------------------------------------------------------------------------
+function getAverage(arr) {
+    const newArr = arr.slice();
+    let sum = 0;
+    for (let item of newArr) {
+        if (Number.isInteger(item) === true) {
+            sum += item;
+        }
+    }
+    let avg = sum /newArr.length;
+    return Number(avg.toFixed(2));
+}
+
+console.log('3. Avarage of arguments:', getAverage(getRandomArray(15, 1, 100)));
+
+//4-------------------------------------------------------------------------------------------------------------
+function getMedian(numbers) {
+    let medianIndex;
+    let arr = [];
+    const sorted = numbers.sort((a, b) => (a - b));
+    for (let item of sorted) {
+        if (Number.isInteger(item) === true) {
+            arr.push(item);
+        }
+    }
+    medianIndex = Math.floor(arr.length / 2);
+    const median = arr.length % 2 === 0 ? ((arr[medianIndex - 1] + arr[medianIndex]) / 2) : arr[medianIndex];
+    return median;
+}
+console.log('4. Median: ', getMedian(getRandomArray(16, 1, 100)));
+
+
+//5-------------------------------------------------------------------------------------------------------------
+function filterEvenNumbers(numbers) {
+    const skipEvenNumbers = numbers.filter((item) => ((item % 2) != 0));
+    return skipEvenNumbers;
+}
+
+console.log('5. Filter (skip) even numbers:', filterEvenNumbers(getRandomArray(15, 1, 100)));
+
+
+//6-------------------------------------------------------------------------------------------------------------
+function countPositiveNumbers(numbers) {
+    const positiveNumbers = numbers.filter((item) =>(item > 0));
+    return positiveNumbers.length;
+}
+
+console.log('6. Count positive numbers:', countPositiveNumbers(getRandomArray(15, -50, 50)));
+
+
+//7-------------------------------------------------------------------------------------------------------------
+function getDividedByFive(numbers) {
+    let numbersDividedByFive = numbers.filter((item) => ((item % 5) == 0));
+    return numbersDividedByFive;
+}
+
+console.log('7. Numbers that can be divided by 5:', getDividedByFive(getRandomArray(15, 1, 100)));
+
+//8. Створіть функцію replaceBadWords(string) – яка 1) розіб'є фразу на слова, 2) замінить погані слова на зірочки (*). При вирішенні цього завдання необхідно розбити масив на слова за допомогою функції .split(" "), після чого масив необхідно буде склеїти .join(" ") Погані слова: shit та fuck. Передбачте можливість розширювати список цих слів у майбутньому. Приклад: replaceBadWords("Are you fucking kidding?") -> "Are you ****ing kidding?" Приклад: replaceBadWords("Holy shit!") -> "Holy ****!" Приклад: replaceBadWords("It's bullshit!") -> "It's bull****!"
+
+//9. Створіть функцію divideByThree(word), яка розбиває кожне слово на умовні склади по 3 букви. Якщо букв менше трьох – не розбиває. Пробіли завжди видаляються. Рядок приводится до нижнього регістру. Приклад: divideByThree("Commander) -> ["com", "man", "der"] Приклад: divideByThree("live") -> ["liv", "e"]
+
+//10. Створіть функцію generateCombinations(word), яка видасть всі можливі перестановки(унікальні, без повторень) букв в слові. Для тестів не передавайте слова в яких більше 10 букв. Краще взагалі обмежити работу функції 10 буквами. Приклад: generateCombinations("man") -> ["man", "mna", "amn", "anm", "nam", "nma"] Приклад: generateCombinations("ol") -> ["ol", "lo"]
+
