@@ -13,8 +13,9 @@ console.log('1. An array of random integers', getRandomArray(15, 1, 100));
  
 //2-------------------------------------------------------------------------------------------------------------
 function getModa(numbers) {
+    const wholeNumbers = numbers.filter(number => Number.isInteger(number) === true);
     const count = {};
-    numbers.forEach(function(i) { count[i] = (count[i]||0) + 1;});
+    wholeNumbers.forEach(function(i) { count[i] = (count[i]||0) + 1;});
     maxValue = 0;
     let result;
     for (const [key, value] of Object.entries(count)) {
