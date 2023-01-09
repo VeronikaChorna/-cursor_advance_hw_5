@@ -13,7 +13,7 @@ console.log('1. An array of random integers', getRandomArray(15, 1, 100));
  
 //2-------------------------------------------------------------------------------------------------------------
 function getModa(numbers) {
-    const wholeNumbers = numbers.filter(number => Number.isInteger(number) === true);
+    const wholeNumbers = numbers.filter(number => Number.isInteger(number));
     const count = {};
     wholeNumbers.forEach(function(i) { count[i] = (count[i]||0) + 1;});
     maxValue = 0;
@@ -23,18 +23,17 @@ function getModa(numbers) {
             maxValue = value;
         }
       }
-
-      result = Object.keys(count).find(key => count[key] === maxValue);
-      return result;
+    result = Object.keys(count).filter(key => count[key] === maxValue);
+    return result;
     }
-console.log('2. Moda of an random array: ', getModa(getRandomArray(15, 1, 10)));
+console.log('2. Moda of an random array: ', getModa(getRandomArray(15, 1, 50)));
 
 //3-------------------------------------------------------------------------------------------------------------
 function getAverage(arr) {
     const newArr = arr.slice();
     let sum = 0;
     for (let item of newArr) {
-        if (Number.isInteger(item) === true) {
+        if (Number.isInteger(item)) {
             sum += item;
         }
     }
@@ -50,7 +49,7 @@ function getMedian(numbers) {
     let arr = [];
     const sorted = numbers.sort((a, b) => (a - b));
     for (let item of sorted) {
-        if (Number.isInteger(item) === true) {
+        if (Number.isInteger(item)) {
             arr.push(item);
         }
     }
@@ -72,7 +71,7 @@ console.log('5. Filter (skip) even numbers:', filterEvenNumbers(getRandomArray(1
 
 //6-------------------------------------------------------------------------------------------------------------
 function countPositiveNumbers(numbers) {
-    const positiveNumbers = numbers.filter((item) =>(item > 0));
+    const positiveNumbers = numbers.filter((item) => typeof item === 'number' && isFinite(item) && item > 0);
     return positiveNumbers.length;
 }
 
